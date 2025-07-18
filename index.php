@@ -61,7 +61,7 @@
   <div class="login-container">
 
     <div class="login-box">
-      <img src="logo/Unas.png" alt="Logo" style="width: 100px; height: auto;">
+      <img src="Logo/Unas.png" alt="Logo" style="width: 100px; height: auto;">
       <h4>Login</h4>
       <form action="conf/autentifikasi.php" method="post">
         <div class="form-group">
