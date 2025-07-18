@@ -63,7 +63,7 @@
     <div class="login-box">
       <img src="Logo/Unas.png" alt="Logo" style="width: 100px; height: auto;">
       <h4>Login</h4>
-      <form action="conf/autentifikasi.php" method="post">
+      <form action="Conf/autentifikasi.php" method="post">
         <div class="form-group">
           <input type="text" name="username" class="form-control" placeholder="Username" required>
         </div>
