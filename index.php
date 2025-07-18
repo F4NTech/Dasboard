@@ -20,7 +20,7 @@
     html, body {
       height: 100%;
       margin: 4;
-      background: url('Aplikasi/dist/img/PLTS.png') no-repeat center center fixed;
+      background: url('aplikasi/dist/img/PLTS.png') no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -61,9 +61,9 @@
   <div class="login-container">
 
     <div class="login-box">
-      <img src="Logo/Unas.png" alt="Logo" style="width: 100px; height: auto;">
+      <img src="logo/Unas.png" alt="Logo" style="width: 100px; height: auto;">
       <h4>Login</h4>
-      <form action="Conf/autentifikasi.php" method="post">
+      <form action="conf/autentifikasi.php" method="post">
         <div class="form-group">
           <input type="text" name="username" class="form-control" placeholder="Username" required>
         </div>

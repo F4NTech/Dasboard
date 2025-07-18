@@ -42,12 +42,12 @@
                   <tbody>
                     <?php 
                     $no = 0;
-                    $query = mysqli_query($koneksi,"SELECT * FROM tb_inv");
+                    $query = mysqli_query($koneksi,"SELECT * FROM acp_cosmaxs");
                     while($mhs = mysqli_fetch_array($query)){
                       $no++;
                     ?>
                   <tr>
-                    <td width='1%'><?php echo $no;?></td>
+                    <!-- <td width='1%'><?php echo $no;?></td>
                     <td><?php echo $mhs['dbtime'];?></td>
                     <td><?php echo $mhs['pv_event'];?></td>
                     <td><?php echo $mhs['pv_i1'];?></td>
@@ -62,7 +62,7 @@
                     <td><?php echo $mhs['pv_q'];?></td>
                     <td><?php echo $mhs['pv_s'];?></td>
                     <td><?php echo $mhs['pv_emonth'];?></td>
-                    <td><?php echo $mhs['pv_eyear'];?></td>
+                    <td><?php echo $mhs['pv_eyear'];?></td> -->
                   </tr>
                   <?php }?>
                   </tbody>

@@ -35,14 +35,16 @@ include('header.php');?>
           include('dashboard.php');
       } elseif ($_GET['page'] == 'Data-EPM') {
           include('data_epm.php');
+      }elseif ($_GET['page'] == 'Data-KWH') {
+          include('data_kwh.php');
+      }else if($_GET['page']=='Data-Inverter'){
+        include('data_inv.php');
       }
    
     // else if ($_GET['page']=='Data-kWh'){
     //   include('data_mahasiswa.php');
     // }
-    // else if($_GET['page']=='Data-Inverter'){
-    //     include('data_Inverter.php');
-    // }
+    
     // else if($_GET['page']=='Data-Pyrano'){
     //     include('data_pyn.php');
     // }

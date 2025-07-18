@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $username;
 
         // Redirect setelah login berhasil
-        header("Location: /Aplikasi/index.php");
+        header("Location: ../aplikasi/index.php");
         exit;
     } else {
         // Gagal login

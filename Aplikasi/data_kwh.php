@@ -1,89 +1,112 @@
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-        <div class="col-12">
-        <!-- /.card -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Data kWh Meter</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <form method="GET" action="">
-                   <div class="form-group">
-                       <label for="tanggal">Pilih Tanggal:</label>
-                     <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : date('Y-m-d'); ?>">
-                   </div>
-                  <button type="submit" class="btn btn-primary mb-3">Tampilkan</button>
-                </form>
-                <table id="example1" class="table table-bordered table-striped">
-                <!-- ... -->
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Time</th>
-                    <th>name</th>
-                    <th>i1</th>
-                    <th>i2</th>
-                    <th>i3</th>
-                    <th>f</th>
-                    <th>pf</th>
-                    <th>v1</th>
-                    <th>v2</th>
-                    <th>v3</th>
-                    <th>p</th>
-                    <th>q</th>
-                    <th>s</th>
-                    <th>eimp</th>
-                    <th>eexp</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-$no = 0;
-$tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('Y-m-d');
-$query = mysqli_query($koneksi, "SELECT * FROM acp_cosmaxs where name = 'EPM' AND DATE(dbtime) = '$tanggal' ORDER BY dbtime DESC");
-if (mysqli_num_rows($query) > 0) {
-  while($mhs = mysqli_fetch_array($query)){
-    $no++;
-?>
-<tr>
-  <td width='1%'><?php echo $no;?></td>
-  <td><?php echo $mhs['dbtime'];?></td>
-  <td><?php echo $mhs['name'];?></td>
-  <td><?php echo $mhs['kwh_i1'];?></td>
-  <td><?php echo $mhs['kwh_i2'];?></td>
-  <td><?php echo $mhs['kwh_i3'];?></td>
-  <td><?php echo $mhs['kwh_f'];?></td>
-  <td><?php echo $mhs['kwh_pf'];?></td>
-  <td><?php echo $mhs['kwh_v1'];?></td>
-  <td><?php echo $mhs['kwh_v2'];?></td>
-  <td><?php echo $mhs['kwh_v3'];?></td>
-  <td><?php echo $mhs['kwh_p'];?></td>
-  <td><?php echo $mhs['kwh_q'];?></td>
-  <td><?php echo $mhs['kwh_s'];?></td>
-  <td><?php echo $mhs['kwh_eimp'];?></td>
-  <td><?php echo $mhs['kwh_eexp'];?></td>
-</tr>
-<?php
-  } // <-- penutup while dipindah ke sini
-} else {
-  echo "<tr><td colspan='16'>Tidak ada data pada tanggal ini.</td></tr>";
-}
-?>
-                  
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
+<?php include 'koneksi.php'; ?>
+<head>
+    <meta charset="UTF-8">
+    <title>Data KWH</title>
 
- 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap4.min.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Data KWH</h3>
+            <form method="GET" class="form-inline mt-5">
+                <span for="tanggal" class="mr-1">Tanggal:</span>
+                <input type="date" name="tanggal" id="tanggal" class="form-control mr-2"
+                    value="<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : date('Y-m-d'); ?>">
+            </form>
+        </div>
+
+        <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+            <table id="dataTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Time</th>
+                        <th>NAME</th>
+                        <th>KWH V1</th>
+                        <th>KWH V2</th>
+                        <th>KWH V3</th>
+                        <th>KWH V</th>
+                        <th>KWH I1</th>
+                        <th>KWH I2</th>
+                        <th>KWH I3</th>
+                        <th>KWH I</th>
+                        <th>KWH P</th>
+                        <th>KWH q</th>
+                        <th>KWH S</th>
+                        <th>KWH pF</th>
+                        <th>KWH F</th>
+                        <th>KWH Eimp</th>
+                        <th>KWH Eexp</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+<!-- jQuery & DataTables -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- DataTables Buttons -->
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<script>
+$(document).ready(function() {
+    var table = $('#dataTable').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "get_kwh_data.php",
+            "type": "POST",
+            "data": function(d) {
+                d.tanggal = $('#tanggal').val(); // Kirim tanggal saat ini
+            }
+        },
+        "columns": [
+            { "data": "no" },
+            { "data": "time" },
+            { "data": "name" },
+            { "data": "kwh_v1" },
+            { "data": "kwh_v2" },
+            { "data": "kwh_v3" },
+            { "data": "kwh_v" },
+            { "data": "kwh_i1" },
+            { "data": "kwh_i2" },
+            { "data": "kwh_i3" },
+            { "data": "kwh_i" },
+            { "data": "kwh_p" },
+            { "data": "kwh_q" },
+            { "data": "kwh_s" },
+            { "data": "kwh_pf" },
+            { "data": "kwh_f" },
+            { "data": "kwh_eimp" },
+            { "data": "kwh_eexp" }
+        ],
+        "dom": 'Bfrtip',
+        "buttons": [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
+    // Reload tabel saat tanggal diganti
+    $('#tanggal').change(function() {
+        table.ajax.reload();
+    });
+});
+</script>
+</body>
+</html>

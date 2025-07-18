@@ -2,7 +2,7 @@
 $page = $_GET['page'] ?? '';
 
 // Daftar halaman untuk menentukan menu yang aktif
-$operationPages = ['Data-kWh', 'Data-Inverter', 'Data-Pyrano', 'Data-EPM'];
+$operationPages = ['data-kwh', 'Data-Inverter', 'Data-Pyrano', 'Data-EPM'];
 $laporanPages = ['Laporan-Harian', 'Laporan-Mingguan', 'Laporan-Bulanan'];
 
 $isOperationOpen = in_array($page, $operationPages);
@@ -30,10 +30,14 @@ $isLaporanOpen = in_array($page, $laporanPages);
       </a>
       <ul class="nav nav-treeview" id="dataOperationMenu" style="display: <?php echo $isOperationOpen ? 'block' : 'none'; ?>">
         <li class="nav-item">
-          <a href="index.php?page=Data-kWh" class="nav-link <?php if ($page == 'Data-kWh') echo 'active'; ?>">
+          <a href="index.php?page=Data-KWH" class="nav-link <?php if ($page == 'Data-KWH') echo 'active'; ?>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>KWH</p>
+          </a>
+          <!-- <a href="index.php?page=data-kwh" class="nav-link <?php// if ($page == 'data-kwh') echo 'active'; ?>">
             <i class="far fa-circle nav-icon"></i>
             <p>kWh Meter</p>
-          </a>
+          </a> -->
         </li>
         <li class="nav-item">
           <a href="index.php?page=Data-Inverter" class="nav-link <?php if ($page == 'Data-Inverter') echo 'active'; ?>">
